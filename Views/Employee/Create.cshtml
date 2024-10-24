@@ -1,0 +1,69 @@
+﻿@model EmployeeData.Models.EmployeeViewModel
+@{
+    ViewData["Title"] = "Create Claim";
+    var errorMessage = TempData["errorMessage"]?.ToString();
+}
+<h3>@ViewData["Title"]</h3>
+<hr />
+@if (!string.IsNullOrWhiteSpace(errorMessage))
+    {
+<div class="alert alert-danger">
+    <strong>Error!</strong>@errorMessage
+        <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+    }
+<form action="Create" method="post">
+    <div class="mb-3">
+        <label class="form-label">FirstName</label>
+        <input type="text" class="form-control" asp-for="FirstName" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">LastName</label>
+        <input type="text" class="form-control" asp-for="LastName" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">HoursWorked</label>
+        <input type="number" class="form-control" asp-for="HoursWorked" />
+        <span asp-validation-for="HoursWorked" class="text-danger"></span>
+    </div>
+<div class="mb-3">
+        <label class="form-label">DateOfBirth</label>
+        <input type="date" class="form-control" asp-for="DateofBirth" />
+        <span asp-validation-for="DateofBirth" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Salary</label>
+        <div class="input-group">
+            <span class="input-group-text">R</span>
+        <input type="text" class="form-control" asp-for="Salary" />
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+        <div class="mb-3">
+        <label class="FileName"></label>
+        <div class="col-md-6">
+            <input type="file" name="file" class="form-control" accept=".jpg, .png, .jpeg, .docx, .pdf" />
+        </div>
+        <div class="col-md-6">
+            <label>Description</label>
+            <input type="text" name="Description" class="form-control" />
+        </div>
+        </div>
+    <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Submit Claim</button>
+    </div>
+    
+</form>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+    }
+}
